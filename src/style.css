@@ -1,0 +1,640 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: IBM Plex Sans Condensed;
+}
+body{
+    overflow: hidden;
+    height: 100%;
+}
+
+/* Home page to place the bell icon */
+
+.back-origin{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+.back-origin > img{
+    margin-right: 5%;
+    margin-top: 1%;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+.back-origin img:hover {
+    animation: bell-swing 0.9s ease-in-out infinite;
+}
+@keyframes bell-swing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* The contents of the page are not notified */
+
+.notifications-page , .activities-page , .settings-page , .new-notif-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #27254E;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    animation-name: slider-back;
+    animation-duration: 4s;
+    right: 0%;
+    position: fixed;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+@keyframes slider-back{
+    0% {
+        width: 70%;
+        opacity: 0;
+    }
+    25%{
+        opacity: 0.5;
+    }
+    50%{
+        opacity: 0.7;
+    }
+    75%{
+        opacity: 0.9;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
+.new-notif-page.active {
+    right: 0;
+    opacity: 1;
+}
+.top-page {
+    opacity: 0; 
+    transition: opacity 0.4s ease 0.4s;
+}
+.new-notif-page.active , .top-page{
+    opacity: 1;
+}
+.empty-notification > div , .new-notif-page > div ,.activities-page > div , .settings-page > div{
+    width: 30%;
+    height: 98vh;
+    margin-right: 5px;
+    background-color: #FFECEB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.792) 0px 3px 8px;
+}
+.top-page{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.lazarus{
+    display: flex;
+    align-items: center;
+}
+.lazarus img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.lazarus h3{
+    font-size: 1.1em;
+    font-family: Italiana;
+    font-weight: 600;
+    color: #000000e7;
+}
+.top-page-close{
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(0, 0, 0, 0.11);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.6s ease;
+}
+.top-page-close:hover{
+    border: 1px solid rgb(255, 136, 136);
+}
+.empty-notification > div > nav,.new-notif-page > div > nav , .activities-page > div > nav , .settings-page > div > nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 35%;
+    margin-top: 4%;
+    margin-bottom: 10px;
+}
+.empty-notification > div > nav h5 , .new-notif-page > div > nav h5 , .activities-page > div > nav h5 , .settings-page > div > nav h5 {
+    position: relative;
+    padding-bottom: 6px;
+    cursor: pointer;
+    transition: color 0.8s ease;
+    font-size: 0.8em;
+    font-weight: 800;
+}
+.empty-notification > div > nav h5::before,.new-notif-page > div > nav h5::before , .activities-page > div > nav h5::before , .settings-page > div > nav h5::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: black;
+    transition: width 0.8s ease;
+}
+.empty-notification > div > nav h5:hover::before ,.new-notif-page > div > nav h5:hover::before , .activities-page > div > nav h5:hover::before ,  .settings-page > div > nav h5:hover::before {
+    width: 100%;
+}
+.empty-notification > div > nav h5.active::before ,.new-notif-page > div > nav h5.active::before , .activities-page > div > nav h5.active::before , .settings-page > div > nav h5.active::before {
+    width: 100%;
+}
+.empty-notification > div > nav h5.active ,.new-notif-page > div > nav h5.active , .activities-page > div > nav h5.active , .settings-page > div > nav h5.active {
+    color: black;
+}
+/* Scroller */
+::-webkit-scrollbar {
+    width:0px;
+}
+::-webkit-scrollbar-thumb {
+    width: 0px;
+}
+.contents-empty-notifications , .contents-new-notif ,.contents-activities{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.contents-empty-notifications span{
+    width: 100%;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.contents-empty-notifications span h4{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+.contents-empty-notifications span img{
+    width: 48%;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.796) 0px 50px 100px -20px, rgba(0, 0, 0, 0.849) 0px 30px 60px -30px, rgba(10, 37, 64, 0.849) 0px -2px 6px 0px inset;
+}
+
+/* The contents of the page have notification */
+
+.hidden{
+    display: none;
+}
+.contents-new-notif , .contents-three , .contents-activities{
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: auto;
+}
+.box-notif{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px 8px;
+}
+.box-information{
+    width: 100%;
+    padding: 18px 8px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    cursor: pointer;
+    background-color: #27254E;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 8px;
+    transition: 0.4s ease;
+}
+.box-information:hover{
+    background-color: rgba(164, 8, 8, 0.957);
+}
+.box-information img , .box-info img{
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+.information{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.information p , .box-info p{
+    color: #c1bfbf;
+    font-size: 0.6em;
+    margin-bottom: 7px;
+}
+.information h3 , .box-info h3{
+    color: rgb(239, 231, 232);
+    font-size: 0.8em;
+}
+.box-time{
+    width: 94%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.box-time p{
+    font-size: 0.6em;
+    margin-top: 5px;
+}
+.box-information-attachments{
+    width: 100%;
+    padding: 18px 8px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    background-color: #27254E;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 8px;
+}
+.box-info{
+    width: 100%;
+    padding: 18px 8px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: #27254E;
+}
+.attachments{
+    width: 100%;
+}
+.attachments > span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    margin-bottom: 18px;
+    padding: 0px 8px;
+    width: 80%;
+    height: 7vh;
+    border-radius: 10px;
+    background-color: #2c1d66bb;
+    transition: 0.7s ease;
+}
+.attachments > span:hover{
+    background-color: rgba(164, 8, 8, 0.957);
+}
+.attachments > span > img{
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+.attachments-name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.photo-icon , .video-icon , .sound-icon{
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    width: 33px;
+    height: 33px;
+}
+.attachments-name div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+}
+.attachments-name div p:first-child{
+    font-size: 0.6em;
+    color: rgb(239, 231, 232);
+}
+.attachments-name div p:last-child{
+    font-size: 0.55em;
+    color: #c1bfbf;
+    margin-top: 2px;
+}
+footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-new > div , .footer-activities{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.setting-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 30px;
+    cursor: pointer;
+    transition: transform 2s ease;
+    transform: rotate(0deg);
+}
+.setting-icon:hover {
+    transform: rotate(360deg);
+}
+.footer-new > div > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.mark-all-read-icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.mark-all-read-p{
+    font-size: 0.7em;
+    color: #08b3da;
+}
+.footer-new > p{
+    padding: 10px 30px;
+    background-color: #FFECEB;
+    border-radius: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #FFECEB;
+    cursor:default;
+}
+
+/* Activities Page */
+
+.close-notif{
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: auto;
+    cursor: pointer;
+    margin-bottom: auto;
+}
+.footer-activities div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+    margin-left: auto;
+    width: 100%;
+}
+.footer-activities  p{
+    padding: 12px 30px;
+    background-color: #07CBD7;
+    border-radius: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: rgb(23, 23, 23);
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.471) 0px 50px 100px -20px, rgba(0, 0, 0, 0.747) 0px 30px 60px -30px, rgba(10, 37, 64, 0.556) 0px -2px 6px 0px inset;
+    transition: 0.5s ease;
+    text-align: center;
+}
+.footer-activities  p:hover{
+    background-color: #f82930;
+    color: #FFECEB;
+}
+
+/* Settings Page */
+
+.settings-page>div{
+    padding: 0px;
+}
+.top-setting-p{
+    padding: 10px;
+}
+.top-page-laz{
+    padding: 10px 20px;
+}
+.top-setting-p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0%;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.container-setting{
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80vh;
+    width: 100%;
+    margin: auto;
+    padding: 20px 20px;
+    background-color: #FFDBD9;
+    border-radius: 0px 0px 20px 20px;
+    overflow: auto;
+}
+.General-notification{
+    width: 100%;
+}
+.General-notification h3{
+    font-size: 1em;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.166);
+    margin-bottom: 5px;
+}
+.General-notification h4{
+    font-size: 0.9em;
+    font-weight: 400;
+    color: #303030;
+    width: 70%;
+}
+.notification-setting{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 30px;
+}
+.collapse-arrow{
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+.collapse-arrow.rotated {
+    transform: rotate(180deg);
+}
+.collapse-arrow-none{
+    width: 15px;
+    height: 15px;
+}
+.notification-content{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.notification-content > img{
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+.notification-content > div{
+    width: 250px !important;
+}
+.notification-content div h4{
+    font-size: 0.9em;
+}
+.notification-content div h5{
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #303030;
+}
+.empty{
+    width: 3%;
+}
+.on-off{
+    width: 50px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: #F924A4; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    position: relative; 
+    transition: background-color 0.3s;
+    box-shadow: rgba(50, 50, 93, 0.159) 0px 50px 100px -20px, rgba(0, 0, 0, 0.231) 0px 30px 60px -30px, rgba(10, 37, 64, 0.251) 0px -2px 6px 0px inset;
+}
+.on-off-disturb{
+    width: 50px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: #F924A4;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+    box-shadow: rgba(50, 50, 93, 0.159) 0px 50px 100px -20px, rgba(0, 0, 0, 0.231) 0px 30px 60px -30px, rgba(10, 37, 64, 0.251) 0px -2px 6px 0px inset;
+}
+.on-off div , .on-off-disturb div{
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: black;
+    position: absolute;
+    right: 2.5px;
+    transition: transform 0.3s;
+}
+.on-off-disturb{
+    background-color: #FFA4DB;
+}
+.on-off-disturb div{
+    left: 2.5px;
+}
+.on-off.active{
+    background-color: #FFA4DB;
+}
+.on-off.active div {
+    transform: translateX(-25px);
+}
+.on-off-disturb.active div{
+    transform: translateX(-25px);
+}
+.notification-setting-subcategory-box{
+    width: 80%;
+    margin-top: 20px;
+}
+.notification-setting-subcategory{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    transition: 0.4s ease;
+}
+.notification-setting-subcategory span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    margin-top: 10px;
+}
+.notification-setting-subcategory span p{
+    font-size: 0.8em;
+}
+.notification-setting-subcategory.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.tick-box{
+    background-color: #F924A4;
+    border-radius: 8px;
+    width: 28px;
+    height: 26px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: rgba(50, 50, 93, 0.213) 0px 50px 100px -20px, rgba(0, 0, 0, 0.286) 0px 30px 60px -30px, rgba(10, 37, 64, 0.259) 0px -2px 6px 0px inset;
+}
+.tick-icon{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.tick-box-choice {
+    background-color: #FFA4DB;
+    border-radius: 8px;
+    width: 28px;
+    height: 26px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.4s ease;
+    box-shadow: rgba(50, 50, 93, 0.213) 0px 50px 100px -20px, rgba(0, 0, 0, 0.286) 0px 30px 60px -30px, rgba(10, 37, 64, 0.259) 0px -2px 6px 0px inset; 
+}
+.tick-icon-choice{
+    display: none;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+.tick-box-choice.active {
+    background-color: #F924A4;
+}
+.tick-box-choice.active .tick-icon-choice {
+    display: flex;
+}
+.disturb-setting{
+    width: 100%;
+    margin-right: auto;
+}
